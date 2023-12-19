@@ -16,7 +16,7 @@ module Sidekiq
       include Sidekiq::Worker
 
       def perform(yml)
-        data = YAML.load(yml, permitted_classes: [Symbol, Date, Time])
+        data = YAML.load(yml, permitted_classes: [Symbol, Date, Time], aliases: true)
 
         if data.length == 4
           (target, method_name, args, kwargs) = data
